@@ -9,6 +9,11 @@ object Show {
 
   // 1.1 Instances (`Int`, `String`, `Boolean`)
 
+  def from[T](f: T => String): Show[T] = (a: T) => f(a)
+
+  implicit val intShow: Show[Int] = from[Int](_.toString)
+  implicit val stringShow: Show[String] = from[String](x => x)
+  implicit val booleanShow: Show[Boolean] = from[Boolean](_.toString)
 
   // 1.2 Instances with conditional implicit
 
